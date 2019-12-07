@@ -1,0 +1,7 @@
+#datepicker-dateTimePicker {
+    z-index: 9999;
+}
+
+.datepicker__months {
+    margin-top: 40px;
+}
