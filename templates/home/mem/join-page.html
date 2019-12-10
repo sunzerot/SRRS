@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+	{% include 'home/layout/header.html' %}
+</head>
+
+<body class="login-page">
+	<nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+    	<div class="container">
+        	<!-- Brand and toggle get grouped for better mobile display -->
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
+            		<span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+        		</button>
+        		<a class="navbar-brand" href="presentation.html"><img src="static/img/home/logo_hd.png" alt="메인로고"
+						style="width: 75px; margin-top: -10px;"></a>
+        	</div>
+    	</div>
+    </nav>
+
+	<div class="page-header header-filter" style="background-image: url('static/img/home/bg0.png'); background-size: cover; background-position: top center;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+					<div class="card card-signup">
+						<form class="form" method="POST" id="frm" name="frm" onsubmit="return false;">
+							<div class="header header-info text-center">
+								<h4 class="card-title">Join</h4>
+								<div class="social-line">
+									<a href="#pablo" class="btn btn-just-icon btn-simple">
+
+									</a>
+									<a href="/" class="btn btn-just-icon btn-simple">
+										<i class="fa fa-home"></i>
+									</a>
+									<a href="#pablo" class="btn btn-just-icon btn-simple">
+
+									</a>
+								</div>
+							</div>
+							<p class="description text-center">Or Be Classical</p>
+							<div class="card-content">
+
+                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">face</i>
+									</span>
+									<input type="text" name="user_name" class="form-control" placeholder="이름">
+								</div>
+
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">face</i>
+									</span>
+									<input type="text" name="user_email" id="user_email" class="form-control" placeholder="이메일" onblur="fn_duplicate(); return false;">
+                  <label class="has-error text-rose" id="error" style="display: none;"></label>
+								</div>
+
+								<div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">lock_outline</i>
+									</span>
+									<input type="password" name="user_pwd" placeholder="암호" class="form-control" />
+								</div>
+
+                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">lock_outline</i>
+									</span>
+									<input type="password" name="user_repeact" placeholder="암호 재확인" class="form-control" />
+								</div>
+
+                <div class="input-group">
+									<span class="input-group-addon">
+										<i class="material-icons">phone</i>
+									</span>
+									<input type="text" name="user_hp" class="form-control" placeholder="휴대폰번호">
+								</div>
+							</div>
+							<div class="footer text-center">
+								<a class="btn btn-info btn-simple btn-wd btn-lg" id="insert_btn" onclick="fn_join();">등록</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<footer class="footer">
+	        <div class="container">
+	            <nav class="pull-left">
+
+	            </nav>
+	            <div class="copyright pull-right">
+	                &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Creative Tim</a>
+	            </div>
+	        </div>
+	    </footer>
+
+	</div>
+
+</body>
+{% include 'home/layout/bottom.html' %}
+<script>
+  let fn_join = () => {
+    $.ajax({
+      type: "POST",
+      url: "api/mem/members/",
+      data: $("#frm").serialize()
+    })
+    .done(function (data) {
+        alert(data);
+        location.href = "/";
+    })
+    .fail(function (err) {
+
+    })
+  };
+
+  let fn_duplicate = () => {
+      $.ajax({
+      type: "GET",
+      url: "api/mem/members/duplicate/",
+      data: { user_email: $("#user_email").val() },
+      success: (function(data) {
+
+          if(data > 0) {
+              $("#error").empty();
+              $("#error").append("아이디가 중복됩니다.");
+              $("#error").css("display", "block");
+              $("#user_email").focus();
+          } else {
+              $("#error").empty();
+              $("#error").css("display", "none");
+          }
+      })
+    });
+
+    let fn_pwdCheck = () => {
+
+    }
+  }
+</script>
+</html>

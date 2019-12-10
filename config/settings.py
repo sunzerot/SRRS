@@ -16,6 +16,9 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+# /Users/yeongjun/Documents/DEV/SRRS/venv/bin/python3.7 /Users/yeongjun/Documents/DEV/SRRS/manage.py makemigrations sys
+# /Users/yeongjun/Documents/DEV/SRRS/venv/bin/python3.7 /Users/yeongjun/Documents/DEV/SRRS/manage.py migrate
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -60,6 +63,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

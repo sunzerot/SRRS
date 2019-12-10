@@ -18,12 +18,17 @@ from django.urls import path
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
 from app.main.index import index
+from app.mem.api import *
 
 urlpatterns = [
     path('', index),
     path('admin/', admin.site.urls),
+    path('login', login_page),
+    path('join', join_page),
 
     url(r'^api/doc', get_swagger_view(title='Rest API Document')),          # restful api doc
+    url(r'^api/mem/members/$', member_list),                                # 유저 회원가입
+    url(r'^api/mem/members/duplicate/', member_id_duplicate),               # 유저 아이디 중복체크
 
 
 ]
