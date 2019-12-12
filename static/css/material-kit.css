@@ -2132,7 +2132,7 @@ output {
 .form-control,
 .form-group .form-control {
     border: 0;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -2205,14 +2205,14 @@ fieldset[disabled]
 
 .form-group.is-focused .form-control {
     outline: none;
-    background-image: linear-gradient(#9c27b0, #9c27b0), linear-gradient(#D2D2D2, #D2D2D2);
+    background-image: linear-gradient(#00bcd4, #00bcd4), linear-gradient(#D2D2D2, #D2D2D2);
     background-size: 100% 2px, 100% 1px;
     box-shadow: none;
     transition-duration: 0.3s;
 }
 
 .form-group.is-focused .form-control .material-input:after {
-    background-color: #9c27b0;
+    background-color: #00bcd4;
 }
 
 .form-group.is-focused.form-info .form-control {
@@ -3101,12 +3101,12 @@ fieldset[disabled] .navbar .btn-link:focus {
 
 .navbar.navbar-primary .dropdown-menu li > a:hover, .navbar.navbar-primary .dropdown-menu li > a:focus {
     color: #FFFFFF;
-    background-color: #9c27b0;
+    background-color: #00bcd4;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
 .navbar.navbar-primary .dropdown-menu .active > a {
-    background-color: #9c27b0;
+    background-color: #00bcd4;
     color: #ffffff;
 }
 
@@ -3423,7 +3423,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .dropdown-menu li a:hover,
 .dropdown-menu li a:focus,
 .dropdown-menu li a:active {
-    background-color: #9c27b0;
+    background-color: #00bcd4;
     color: #FFFFFF;
 }
 
@@ -3436,7 +3436,7 @@ fieldset[disabled] .navbar .btn-link:focus {
 .navbar.navbar-default .dropdown-menu li > a:hover,
 .navbar.navbar-default .dropdown-menu li > a:focus {
     color: #FFFFFF;
-    background-color: #9c27b0;
+    background-color: #00bcd4;
     box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 

@@ -15,8 +15,8 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
         		</button>
-        		<a class="navbar-brand" href="presentation.html"><img src="static/img/home/logo_hd.png" alt="메인로고"
-						style="width: 75px; margin-top: -10px;"></a>
+        		<a class="navbar-brand" href="/"><img src="static/img/home/whiteLogo.png" alt="메인로고"
+						style="width: 80px; margin-top: -10px;"></a>
         	</div>
     	</div>
     </nav>
@@ -48,7 +48,7 @@
 									<span class="input-group-addon">
 										<i class="material-icons">face</i>
 									</span>
-									<input type="text" name="user_nm" class="form-control" placeholder="아이디">
+									<input type="text" name="user_email" class="form-control" placeholder="이메일">
 								</div>
 
 								<div class="input-group">
@@ -57,6 +57,7 @@
 									</span>
 									<input type="password" name="user_pwd" placeholder="암호" class="form-control" />
 								</div>
+
 
 								<!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -67,9 +68,14 @@
 									</label>
 								</div> -->
 							</div>
+              <a onclick="" style="cursor: pointer;">
+                <p class="description text-center text-rose">비밀번호 찾기</p>
+              </a>
 							<div class="footer text-center">
-								<a href="#pablo" class="btn btn-info btn-simple btn-wd btn-lg" onclick="fn_login()">로그인</a>
+								<a href="#pablo" class="btn btn-info" onclick="fn_login()">로그인</a>
 							</div>
+              <br/>
+
 						</form>
 					</div>
 				</div>
@@ -91,7 +97,26 @@
 </body>
 {% include 'home/layout/bottom.html' %}
 <script>
+  let fn_login = () => {
+    $.ajax({
+      type: "POST",
+      url: "api/mem/members/login/",
+      data: $("#frm").serialize()
+    })
+    .done(function (data) {
+        if(data === "success") {
+          alert("로그인 되었습니다.");
+          location.href = "/";
+        } else {
+          alert(data);
+          return false;
+        }
 
+    })
+    .fail(function (err) {
+
+    })
+  };
 
 </script>
 </html>

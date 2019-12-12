@@ -21,8 +21,6 @@
 	<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput   -->
 	<script src="static/js/jasny-bootstrap.min.js"></script>
 
-	<!--    Plugin For Google Maps   -->
-	<script  type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 	<!--    Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc    -->
 	<script src="static/js/material-kit.js?v=1.2.1" type="text/javascript"></script>
@@ -52,4 +50,21 @@
 				}
 			});
 		});
+
+		let fn_logout = () => {
+      $.ajax({
+         type: "POST",
+         url: "api/mem/members/logout/",
+      })
+      .done(function (data) {
+        if(data === "success") {
+            location.href = "/";
+        } else {
+            alert(data);
+        }
+      })
+      .fail(function (err) {
+        alert("통신에 오류가 발생했습니다.")
+      })
+  }
 	</script>

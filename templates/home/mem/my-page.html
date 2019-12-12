@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+	{% include 'home/layout/header.html' %}
+</head>
+
+<body class="profile-page">
+  {% include 'home/layout/top.html' %}
+
+	<div class="page-header header-filter" data-parallax="true" style="background-image: url('static/img/home/myPage.png');"></div>
+
+	<div class="main main-raised">
+		<div class="profile-content">
+            <div class="container" style="padding-bottom: 50px;">
+
+                <div class="row">
+	                <div class="col-xs-6 col-xs-offset-3">
+        	           <div class="profile">
+	                        <div class="avatar">
+	                            <img src="static/img/home/myImg.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                        </div>
+	                        <div class="name">
+	                            <h3 class="title" id="userNm"></h3>
+								              <h6>일반회원</h6>
+{#                              <a href="#pablo" class="btn btn-just-icon btn-simple btn-dribbble"><i class="fa fa-dribbble"></i></a>#}
+{#                              <a href="#pablo" class="btn btn-just-icon btn-simple btn-twitter"><i class="fa fa-twitter"></i></a>#}
+{#                              <a href="#pablo" class="btn btn-just-icon btn-simple btn-pinterest"><i class="fa fa-pinterest"></i></a>#}
+	                        </div>
+	                    </div>
+    	            </div>
+                </div>
+
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+						<div class="profile-tabs">
+              <div class="nav-align-center">
+								<ul class="nav nav-pills nav-pills-icons" role="tablist">
+									<li class="active">
+                    <a href="#work" role="tab" data-toggle="tab">
+                      <i class="material-icons">palette</i>
+                        회원정보
+                    </a>
+
+                  </li>
+                  <li>
+										<a href="#connections" role="tab" data-toggle="tab">
+											<i class="material-icons">people</i>
+											숙박예약정보
+										</a>
+									</li>
+                  <li>
+                    <a href="#media" role="tab" data-toggle="tab">
+                      <i class="material-icons">camera</i>
+                      숙박문의 확인
+                    </a>
+                  </li>
+			          </ul>
+							</div>
+						</div>
+						<!-- End Profile Tabs -->
+					</div>
+          </div>
+            <div class="tab-content">
+			        <div class="tab-pane active work" id="work">
+                <div class="col-md-6 col-md-offset-3">
+                  <p class="description text-center">회원 정보를 수정할 수 있습니다.<br><br>
+                  </p>
+                  <form role="form" id="my-form" method="post" > {% csrf_token %}
+                    <div class="form-group">
+                      <label class="control-label">이름</label>
+                      <input type="text" id="user_name" name="user_name" class="form-control">
+                    <span class="material-input"></span></div>
+                    <div class="form-group">
+                      <label class="control-label">비밀번호</label>
+                      <input type="password" id="user_pwd" name="user_pwd" class="form-control" placeholder="변경할 비밀번호">
+                    <span class="material-input"></span></div>
+                    <div class="form-group">
+                      <label class="control-label">이메일</label>
+                      <input type="email" id="user_email" name="user_email" class="form-control" readonly>
+                    <span class="material-input"></span></div>
+                    <div class="form-group ">
+                      <label class="control-label">핸드폰번호</label>
+                      <input type="text" id="user_phone" name="user_phone" class="form-control">
+                    <span class="material-input"></span></div>
+                    <div class="submit text-center">
+                      <button id="modify" class="btn btn-primary btn-raised btn-round">수정</button>
+                    </div>
+                  </form>
+                </div>
+			        </div>
+              <div class="tab-pane connections" id="connections">
+
+              </div>
+              <div class="tab-pane text-center gallery" id="media">
+
+    			    </div>
+            </div>
+        </div>
+	</div>
+  </div>
+
+{% include 'home/layout/footer.html' %}
+</body>
+{% include 'home/layout/bottom.html' %}
+<script>
+  $(function () {
+
+      fn_myInfo();
+
+      $("#modify").on("click", function () {
+        $.ajax({
+          type: "POST",
+          url: "api/mem/members/modify/",
+          data: $("#my-form").serialize(),
+          success: (function (data) {
+              console.log(data);
+            if(data === "success") {
+                alert("회원정보 수정완료");
+            }
+          }),
+          fail: (function (err) {
+              console.log(err);
+          })
+        })
+      })
+  });
+
+  function fn_myInfo() {
+      $.ajax({
+          type: "POST",
+          url: "api/mem/members/member/",
+          data : { user_email : '{{ request.session.user_email }}' },
+          success: function(data) {
+            $.each(data[0], function(key, value) {
+                $("#" + key).val(value);
+            });
+            $("#userNm").text(data[0]["user_name"]);
+          }
+      })
+
+  }
+
+</script>
+</html>
