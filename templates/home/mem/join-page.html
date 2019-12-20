@@ -48,7 +48,7 @@
 									<span class="input-group-addon">
 										<i class="material-icons">face</i>
 									</span>
-									<input type="text" name="user_name" class="form-control" placeholder="이름">
+									<input type="text" name="user_name"  id="user_name" class="form-control" placeholder="이름">
 								</div>
 
 								<div class="input-group">
@@ -63,21 +63,28 @@
 									<span class="input-group-addon">
 										<i class="material-icons">lock_outline</i>
 									</span>
-									<input type="password" name="user_pwd" placeholder="암호" class="form-control" />
+									<input type="password" name="user_pwd" id="user_pwd" placeholder="암호" class="form-control" />
 								</div>
 
                 <div class="input-group">
 									<span class="input-group-addon">
 										<i class="material-icons">lock_outline</i>
 									</span>
-									<input type="password" name="user_repeact" placeholder="암호 재확인" class="form-control" />
+									<input type="password" name="user_repeact" id="user_repeact" placeholder="암호 재확인" class="form-control" />
 								</div>
-
                 <div class="input-group">
 									<span class="input-group-addon">
 										<i class="material-icons">phone</i>
 									</span>
-									<input type="text" name="user_hp" class="form-control" placeholder="휴대폰번호">
+									<input type="text" name="user_hp" id="user_hp" class="form-control" placeholder="휴대폰번호">
+								</div>
+                <div class="input-group">
+									<div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="user_level" id="user_level">
+                      숙소등록자 회원가입
+                    </label>
+                  </div>
 								</div>
 							</div>
 							<div class="footer text-center">
@@ -106,10 +113,22 @@
 {% include 'home/layout/bottom.html' %}
 <script>
   let fn_join = () => {
+    let test = "";
+    if($("#user_level").prop("checked")) {
+        test = "on";
+    } else {
+        test = "off";
+    }
     $.ajax({
       type: "POST",
       url: "api/mem/members/",
-      data: $("#frm").serialize()
+      data: {
+          user_email: $("#user_email").val(),
+          user_name: $("#user_name").val(),
+          user_pwd: $("#user_pwd").val(),
+          user_hp: $("#user_hp").val(),
+          user_level: test
+      }
     })
     .done(function (data) {
         alert(data);

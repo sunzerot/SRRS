@@ -34,6 +34,13 @@
                       <i class="material-icons">perm_contact_calendar</i> 내정보
                     </a>
                   </li>
+                  {% if request.session.user_level == 10 %}
+                  <li>
+                    <a href="rgtRoom">
+                      <i class="material-icons">home</i> 숙소등록
+                    </a>
+                  </li>
+                  {% endif %}
                   <li>
                     <a onclick="fn_logout();">
                       <i class="material-icons">power_settings_new</i> 로그아웃

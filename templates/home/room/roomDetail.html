@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+	{% include 'home/layout/header.html' %}
+  <link href="static/css/hotel-datepicker.css" rel="stylesheet" />
+</head>
+
+<body class="about-us">
+  {% include 'home/layout/top.html' %}
+
+  {% for row in result %}
+	<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('static/img/home/bg19.png');">
+		<div class="container">
+    		<div class="row">
+        		<div class="col-md-8 col-md-offset-2">
+                    <h1 class="" id="rmNm">
+                      {{ row.rm_nm }}
+                    </h1>
+                    <h4>
+                      {{ row.rm_addr }}
+                    </h4>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<div class="main main-raised">
+  <input type="hidden" id="seqNo" value="{{ row.seq_no }}" />
+  <input type="hidden" id="real_email" value="{{ row.rm_email }}" />
+  <div class="section" id="carousel">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+
+						<!-- Carousel Card -->
+						<div class="card card-raised card-carousel">
+							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+								<div class="carousel slide" data-ride="carousel">
+
+									<!-- Indicators -->
+									<ol class="carousel-indicators">
+										<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+										<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+									</ol>
+
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner">
+										<div class="item active">
+											<img src="{{ row.rm_room1_path }}" alt="Awesome Image">
+											<div class="carousel-caption">
+{#												<h4><i class="material-icons"></i> Yellowstone National Park, United States</h4>#}
+											</div>
+										</div>
+										<div class="item">
+											<img src="{{ row.rm_room2_path }}" alt="Awesome Image">
+											<div class="carousel-caption">
+{#												<h4><i class="material-icons"></i> Somewhere Beyond, United States</h4>#}
+											</div>
+										</div>
+										<div class="item">
+											<img src="{{ row.rm_cik_path }}" alt="Awesome Image">
+											<div class="carousel-caption">
+{#												<h4><i class="material-icons"></i> Yellowstone National Park, United States</h4>#}
+											</div>
+										</div>
+                    <div class="item">
+											<img src="{{ row.rm_living_path }}" alt="Awesome Image">
+											<div class="carousel-caption">
+{#												<h4><i class="material-icons"></i> Yellowstone National Park, United States</h4>#}
+											</div>
+										</div>
+                    <div class="item">
+											<img src="{{ row.rm_tol1_path }}" alt="Awesome Image">
+											<div class="carousel-caption">
+{#												<h4><i class="material-icons"></i> Yellowstone National Park, United States</h4>#}
+											</div>
+										</div>
+									</div>
+
+									<!-- Controls -->
+									<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+										<i class="material-icons">keyboard_arrow_left</i>
+									</a>
+									<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+										<i class="material-icons">keyboard_arrow_right</i>
+									</a>
+								</div>
+							</div>
+						</div>
+						<!-- End Carousel Card -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container" style="padding-bottom: 100px;">
+      <div class="contact-content">
+    		<div class="container">
+            	<h2 class="title">숙소 정보</h2>
+				<div class="row">
+					<div class="col-md-6">
+						<p class="description">아파트 전체를 단독으로 사용하시게 됩니다.<br><br>
+						</p>
+
+            <h4 class="title">기본정보</h4>
+            <div class="row">
+              <div class="col-md-3">
+                <span style="color: #333">{% if row.rm_type == "1" %} 아파트 {% endif %}</span>
+              </div>
+              <div class="col-md-3">
+                <span style="color: #333">인원 {{ row.rm_adult }}명</span>
+              </div>
+              <div class="col-md-3">
+                <span style="color: #333">체크인 {{ row.rm_chk_in_time }}</span>
+              </div>
+              <div class="col-md-3">
+                <span style="color: #333">체크아웃 {{ row.rm_chk_out_time }}</span>
+              </div>
+            </div>
+
+            <hr style="background: #ccc;">
+
+            <h4 class="title">편의시설</h4>
+            <div class="row">
+              <div class="col-md-4">
+                <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#loginModal">
+								<i class="material-icons">directions_car</i>
+								주차공간
+							<div class="ripple-container"></div></button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#loginModal">
+								<i class="material-icons">signal_wifi_4_bar_lock</i>
+								와이파이
+							<div class="ripple-container"></div></button>
+              </div>
+            </div>
+            <br/>
+            <div class="row">
+              <div class="col-md-4">
+                <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#loginModal">
+								<i class="material-icons">kitchen</i>
+								주방
+							<div class="ripple-container"></div></button>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-raised btn-round btn-default btn-block" data-toggle="modal" data-target="#loginModal">
+								<i class="material-icons">system_update_alt</i>
+								엘레베이터
+							<div class="ripple-container"></div></button>
+              </div>
+            </div>
+
+          <hr style="background: #ccc;">
+
+          <h4 class="title">예약취소</h4>
+            <div class="row">
+              <div class="col-md-12">
+                <h5 class="title">엄격 정책</h5>
+              <li>
+                체크인 30일 전까지 예약을 취소하면 모든 수수료를 포함한 요금 전액이 환불됩니다.
+
+              </li>
+              <li>
+                체크인까지 30일이 남지 않은 시점에 예약을 취소하면 총 숙박 요금의 50%가 환불됩니다.
+              </li>
+              <li>
+                숙박 중 예약을 취소하면 일부 환불을 요청할 수 있습니다.
+              </li>
+              </div>
+
+            </div>
+
+
+					</div>
+                	<div class="col-md-4 col-md-offset-2">
+                    <div class="info info-horizontal" style="padding: 0px;">
+    						<div class="icon icon-rose">
+    							<i class="material-icons">business_center</i>
+    						</div>
+    						<div class="description">
+    							<h4 class="info-title">예약하기</h4>
+                  <p>평일가격 : {{ row.rm_mon_max_pay }}원</p>
+                  <p>주말가격 : {{ row.rm_sun_max_pay }}원</p>
+                  <p>인원 추가가격 : {{ row.rm_max_pay }}원</p>
+
+    						</div>
+                <div class="row">
+                  <div class="col-md-8 col-lg-offset-1">
+                  <input type="text" id="dateTimePicker" class="form-control" placeholder="날짜검색">
+                </div>
+                  <div class="col-md-8 col-lg-offset-1">
+                  <div class="text-center" style="margin-top:20px;">
+                      <a id="reBtn" class="btn btn-info btn-round">예약<div
+                        class="ripple-container"></div></a>
+                  </div>
+                </div>
+                </div>
+
+
+
+
+    		        	</div>
+    		        	<div class="info info-horizontal" style="padding: 0px;">
+    						<div class="icon icon-rose">
+    							<i class="material-icons">pin_drop</i>
+    						</div>
+    						<div class="description">
+    							<h4 class="info-title">주소</h4>
+    							<p> {{ row.rm_addr }}<br>
+                                        <br>
+
+    							</p>
+    						</div>
+    		        	</div>
+                        <div class="info info-horizontal" style="padding: 0px;">
+    						<div class="icon icon-rose">
+    							<i class="material-icons">phone</i>
+    						</div>
+    						<div class="description">
+    							<h4 class="info-title">문의하기</h4>
+    							<p id="get_email"> {{ row.rm_email }}<br>
+                                    {{ row.rm_phone }}<br>
+                                    월 - 금, 8:00-22:00
+    							</p>
+                  <p>
+
+                      <a id="noti" class="btn btn-rose btn-round">1:1 문의하기<div
+                        class="ripple-container"></div></a>
+
+                  </p>
+
+    						</div>
+
+    		        	</div>
+
+				    </div>
+               </div>
+            </div>
+		</div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+{% include 'home/layout/footer.html' %}
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					<i class="material-icons">clear</i>
+				</button>
+				<h4 class="modal-title">1:1 문의하기</h4>
+			</div>
+			<div class="modal-body">
+            <div class="title">
+                <h6>제목</h6>
+            </div>
+
+            <input type="text" id="subject" placeholder="제목을 입력해주세요." class="form-control">
+
+            <div class="title">
+                <h6>내용</h6>
+            </div>
+            <div class="form-group label-floating is-empty">
+            <label class="control-label"> 문의하고 싶은 내용을 입력해주세요.</label>
+            <textarea class="form-control" id="contents" rows="5"></textarea>
+                    <span class="material-input"></span></div>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-simple btn-info" id="notiSubmit">보내기</button>
+				<button type="button" class="btn btn-danger btn-simple" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+{% include 'home/layout/bottom.html' %}
+<script src="/static/js/hotel-datepicker.js" type="text/javascript"></script>
+<script src="/static/js/fecha.js" type="text/javascript"></script>
+<script>
+$(document).ready(function () {
+		let input = document.getElementById('dateTimePicker');
+		let datepicker = new HotelDatepicker(input, {
+			format: 'YYYY-MMM-D (dddd)',
+			// dddd D MMM YYYY
+			startOfWeek: 'monday',
+			i18n: {
+				selected: '선택날짜:',
+				night: '일',
+				nights: '일',
+				button: '닫기',
+				'checkin-disabled': 'Check-in disabilitato',
+				'checkout-disabled': 'Check-out disabilitato',
+				'day-names-short': ['　일 ', '　월 ', '　화 ', '　수 ', '　목 ', '　금 ', '　토 '],
+				'day-names': ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
+				'month-names-short': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+				'month-names': ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+			}
+		});
+
+		$("#reBtn").on("click", function() {
+		    if('{{ request.session.user_email }}' != '') {
+          let id = '{{ request.session.user_email }}';
+          let date = $("#dateTimePicker").val().split(" - ");
+          let chkIn = date[0].split(" (")[0];
+          let chkOut = date[1].split(" (")[0];
+         $.ajax({
+          type: "POST",
+          url : "api/room/rooms/reserve/",
+          data: {'seqNo': $("#seqNo").val(), 'chkIn': chkIn, 'chkOut': chkOut, 'id': id},
+          success: function(data) {
+              if(data === "success") {
+                  alert("예약이 완료됐습니다.");
+              } else {
+                  alert("예약에 실패하였습니다.");
+              }
+          }
+          });
+        } else {
+		        alert("로그인을 해주세요!")
+        }
+
+    });
+
+		$("#noti").on("click", function() {
+		    if('{{ request.session.user_email }}' != '') {
+		      $("#myModal").modal('show');
+        } else {
+		      alert("로그인 해주세요!");
+        }
+
+    });
+
+		$("#notiSubmit").on("click", function() {
+		    $.ajax({
+           type: "POST",
+           url: "api/room/rooms/noti/",
+           data: {
+               post_email: '{{ request.session.user_email }}',
+               get_email: $("#real_email").val().trim(),
+               rm_nm: $("#rmNm").text().trim(),
+               subject: $("#subject").val().trim(),
+               content: $("#contents").val().trim()
+           },
+           success: (function(data) {
+              if(data === "success") {
+                  alert("문의를 전송하였습니다");
+                  $("#myModal").modal('hide');
+              }
+           })
+       })
+    });
+
+
+	});
+
+
+</script>
+</html>

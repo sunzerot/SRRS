@@ -38,6 +38,7 @@ def my_page(request):
     else:
         return render(request, 'home/mem/my-page.html')
 
+
 # 아이디 중복 체크
 @api_view(['GET'])
 def member_id_duplicate(request):
@@ -62,6 +63,7 @@ def member_list(request):
             dump_data = json.dumps(post_data)
             data = json.loads(dump_data)
             data['user_pwd'] = hashlib.md5(data['user_pwd'].encode('utf-8')).hexdigest()
+            data['user_level'] = 10 if data['user_level'] == 'on' else 1
             serializer = MemberSerializer(data=data)
             if serializer.is_valid():
                 serializer.save()
@@ -104,6 +106,7 @@ def member_login(request):
                 request.session["user_email"] = result[2]
                 request.session["user_name"] = result[1]
                 request.session["user_phone"] = result[4]
+                request.session["user_level"] = result[5]
                 return Response(resp_msg)
             except Exception as e:
                 print(e)

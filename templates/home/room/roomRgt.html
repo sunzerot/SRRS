@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+	{% include 'home/layout/header.html' %}
+</head>
+
+<body class="about-us">
+  {% include 'home/layout/top.html' %}
+
+	<div class="page-header header-filter header-small" data-parallax="true" style="background-image: url('static/img/home/rgtRoom2.png');">
+		<div class="container">
+    		<div class="row">
+        		<div class="col-md-8 col-md-offset-2">
+                    <h1 class="">숙소 등록하기</h1>
+                </div>
+            </div>
+        </div>
+	</div>
+
+	<div class="main main-raised">
+		<div class="container" style="padding-bottom: 100px;">
+      <form id="frm" name="frm" method="post"> {% csrf_token %}
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 text-center" style="margin-top: 25px;">
+					<h2 class="title">정확한 정보를 입력해주세요.</h2>
+					<h5 class="description">공유할 숙박의 정보를 입력해주세요. <br/> 등록하는 즉시 사용자들과 공유됩니다.</h5>
+				</div>
+
+        <div class="col-md-8 col-md-offset-2">
+          <div class="row">
+             <div class="col-lg-12 col-sm-6">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">숙소 이름</label>
+              <input type="text" class="form-control" name="rmNm">
+            <span class="material-input"></span></div>
+          </div>
+          <div class="col-lg-12 col-sm-6">
+            <div class="form-group label-floating is-empty">
+              <label class="control-label">주소</label>
+              <input type="text" class="form-control" name="addr">
+            <span class="material-input"></span></div>
+          </div>
+          </div>
+
+          <div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-4">
+							<select class="selectpicker" title="Single Select" data-size="7" name="rmType">
+								<option disabled selected>숙박종류</option>
+								<option value="1">아파트</option>
+								<option value="2">단독주택</option>
+								<option value="3">오피스텔</option>
+								<option value="4">연립주택</option>
+							</select>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-4">
+							<select class="selectpicker" title="Single Select" data-size="5" name="personal">
+								<option disabled selected>숙박가능인원</option>
+								<option value="1">1명</option>
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+								<option value="5">5명</option>
+							</select>
+						</div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+							<select class="selectpicker" title="Single Select" data-size="15" name="day">
+								<option disabled selected>최소숙박가능일</option>
+								<option value="1">1일</option>
+								<option value="2">2일</option>
+								<option value="3">3일</option>
+								<option value="4">4일</option>
+								<option value="5">5일</option>
+                <option value="6">6일</option>
+                <option value="7">7일</option>
+                <option value="8">8일</option>
+                <option value="9">9일</option>
+                <option value="10">10일</option>
+                <option value="11">11일</option>
+                <option value="12">12일</option>
+                <option value="13">13일</option>
+                <option value="14">14일</option>
+                <option value="15">15일</option>
+							</select>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group label-floating is-empty">
+              <label class="control-label">평일 가격</label>
+              <input type="number" class="form-control" name="monPay">
+            <span class="material-input"></span></div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group label-floating is-empty">
+              <label class="control-label">주말 가격</label>
+              <input type="number" class="form-control" name="sunPay">
+            <span class="material-input"></span></div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group label-floating is-empty">
+              <label class="control-label">추가 인원요금 (1명당)</label>
+              <input type="text" class="form-control" name="maxPay">
+            <span class="material-input"></span></div>
+						</div>
+
+					</div>
+          <div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group ">
+              <label class="control-label">체크인 시간</label>
+              <input type="time" class="form-control" name="chkIn">
+            <span class="material-input"></span></div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group">
+              <label class="control-label">체크아웃 시간</label>
+              <input type="time" class="form-control" name="chkOut">
+            <span class="material-input"></span></div>
+						</div>
+					</div>
+          <div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group is-empty">
+              <label class="control-label">이메일</label>
+              <input type="text" class="form-control" name="email" value="{{ request.session.user_email }}">
+            <span class="material-input"></span></div>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6">
+							<div class="form-group is-empty">
+              <label class="control-label">전화번호</label>
+              <input type="text" class="form-control" name="phone" value="{{ request.session.user_phone }}">
+            <span class="material-input"></span></div>
+						</div>
+					</div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="title">
+                  <h3>편의시설</h3>
+              </div>
+              <div class="row" style="display: flex;">
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="bed">
+                      침대
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="dry">
+                      드라이기
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="water">
+                      온수
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="el">
+                      엘리베이터
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="com">
+                      컴퓨터
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="refri">
+                      냉장고
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="air">
+                      에어컨
+                    </label>
+                    </div>
+                </div>
+              </div>
+              <div class="row" style="display: flex;">
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="park">
+                      건물내무료주차
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="mwave">
+                      전자레인지
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="gwave">
+                      가스레인지
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="hair">
+                      헤어드라이기
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="tv">
+                      TV
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="wash">
+                      세탁
+                    </label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="warn">
+                      난방
+                    </label>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="title">
+                  <h3>내부사진</h3>
+              </div>
+
+              <div class="row" style="display: flex;">
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="oneBed" name="oneBed">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="침실 1">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="twoBed" name="twoBed">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="침실 2">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="threeBed" name="threeBed">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="침실 3">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="display: flex;">
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="living" name="living">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="거실">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="rest" name="rest">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="화장실">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="rest" name="rest2">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="화장실">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-file-upload">
+                    <input type="file" id="kit" name="kit">
+                    <div class="input-group">
+                      <input type="text" readonly="" class="form-control" placeholder="주방">
+                      <span class="input-group-btn input-group-s">
+                        <button type="button" class="btn btn-just-icon btn-round btn-info">
+                          <i class="material-icons">attach_file</i>
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="submit text-center" style="margin-top: 40px;">
+            <button id="insert" type="button" class="btn btn-success btn-raised btn-round">등록<div class="ripple-container"></div></button>
+          </div>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+
+{% include 'home/layout/footer.html' %}
+</body>
+{% include 'home/layout/bottom.html' %}
+<script>
+  $(function () {
+
+
+      $("#insert").on("click", function () {
+        let form = $("#frm")[0];
+        let formData = new FormData(form);
+
+        $.ajax({
+          type: "POST",
+          url: "api/room/rooms/insert/",
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: (function (data) {
+              console.log(data);
+            if(data === "success") {
+                alert("숙소가 등록됐습니다.");
+                location.href = "/myPage";
+            } else {
+                location.href = "/myPage";
+            }
+          }),
+          fail: (function (err) {
+              console.log(err);
+          })
+        })
+      })
+  });
+
+</script>
+</html>
